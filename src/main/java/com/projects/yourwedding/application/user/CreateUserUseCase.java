@@ -1,8 +1,8 @@
-package com.dev.yourwedding.application.user;
+package com.projects.yourwedding.application.user;
 
-import com.dev.yourwedding.domain.user.Email;
-import com.dev.yourwedding.domain.user.User;
-import com.dev.yourwedding.domain.user.UserRepository;
+import com.projects.yourwedding.domain.user.Email;
+import com.projects.yourwedding.domain.user.User;
+import com.projects.yourwedding.domain.user.UserRepository;
 
 import java.util.UUID;
 
