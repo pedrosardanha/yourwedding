@@ -28,21 +28,10 @@ public class User {
         this.password = password;
     }
 
-    public UUID getId() {
-        return id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public Email getEmail() {
-        return email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
+    public UUID getId() { return id; }
+    public String getName() { return name; }
+    public Email getEmail() { return email; }
+    public String getPassword() { return password; }
 
     @Override
     public boolean equals(Object o) {

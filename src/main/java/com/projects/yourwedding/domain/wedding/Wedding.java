@@ -43,25 +43,11 @@ public class Wedding {
         this.ownerId = ownerId;
     }
 
-    public UUID getId() {
-        return id;
-    }
-
-    public String getCode() {
-        return code;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public LocalDate getDate() {
-        return date;
-    }
-
-    public UUID getOwnerId() {
-        return ownerId;
-    }
+    public UUID getId() { return id; }
+    public String getCode() { return code; }
+    public String getTitle() { return title;}
+    public LocalDate getDate() { return date; }
+    public UUID getOwnerId() { return ownerId; }
 
     @Override
     public boolean equals(Object o) {
