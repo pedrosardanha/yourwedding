@@ -3,6 +3,8 @@ package com.projects.yourwedding.application.wedding;
 import com.projects.yourwedding.domain.wedding.Wedding;
 import com.projects.yourwedding.domain.wedding.WeddingRepository;
 
+import java.util.UUID;
+
 public class CreateWeddingUseCase {
 
     private final WeddingRepository weddingRepository;
@@ -17,13 +19,13 @@ public class CreateWeddingUseCase {
             throw new IllegalArgumentException("Este código de casamento já está em uso. Escolha outro.");
         }
 
-        // 2. Instanciação da Entidade (as validações de título, data válida, etc., ocorrem no construtor de Wedding)
+        // 2. Instanciação da Entidade
         Wedding newWedding = new Wedding(
                 UUID.randomUUID(),
+                request.code(),
                 request.title(),
                 request.date(),
-                request.ownerId(),
-                request.code()
+                request.ownerId()
         );
 
         // 3. Persistência

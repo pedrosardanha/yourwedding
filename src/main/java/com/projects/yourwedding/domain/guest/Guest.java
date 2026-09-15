@@ -9,9 +9,9 @@ public class Guest {
     private UUID userId;
     private final String name;
     private final String code; 
-    private final boolean confirmed;
+    private final boolean isConfirmed;
 
-    public Guest(UUID id, UUID weddingId, String name, String code, boolean confirmed) {
+    public Guest(UUID id, UUID weddingId, String name, String code, boolean isConfirmed) {
         if (id == null) throw new IllegalArgumentException("O ID do convidado não pode ser nulo.");
         if (weddingId == null) throw new IllegalArgumentException("O convidado precisa estar vinculado a um casamento.");
         if (name == null || name.trim().isEmpty()) throw new IllegalArgumentException("O nome do convidado não pode ser vazio.");
@@ -22,7 +22,7 @@ public class Guest {
         this.userId = null;
         this.name = name;
         this.code = code;
-        this.confirmed = confirmed;
+        this.isConfirmed = isConfirmed;
     }
 
     public UUID getId() { return id; }
@@ -30,7 +30,7 @@ public class Guest {
     public UUID getUserId() { return userId; }
     public String getName() { return name; }
     public String getCode() { return code; }
-    public boolean isConfirmed() { return confirmed; }
+    public boolean isConfirmed() { return isConfirmed; }
     
     public Guest confirmAttendance() {
         return new Guest(this.id, this.weddingId, this.name, this.code, true);
