@@ -9,7 +9,7 @@ public class Guest {
     private UUID userId;
     private final String name;
     private final String code; 
-    private final boolean isConfirmed;
+    private boolean isConfirmed;
 
     public Guest(UUID id, UUID weddingId, String name, String code, boolean isConfirmed) {
         if (id == null) throw new IllegalArgumentException("O ID do convidado não pode ser nulo.");
@@ -32,8 +32,11 @@ public class Guest {
     public String getCode() { return code; }
     public boolean isConfirmed() { return isConfirmed; }
     
-    public Guest confirmAttendance() {
-        return new Guest(this.id, this.weddingId, this.name, this.code, true);
+    public void confirmAttendance() {
+        if (this.isConfirmed) {
+            throw new IllegalStateException("A presença deste convidado já foi confirmada.");
+        }
+        this.isConfirmed = true;
     }
 
     public void linkToUser(UUID userId) {
