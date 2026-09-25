@@ -50,7 +50,13 @@ public class Gift {
         return this.raisedAmount.compareTo(this.price) >= 0;
     }
 
-    // Getters
+    public void addRaisedAmount(BigDecimal amount) {
+        if (amount == null || amount.compareTo(BigDecimal.ZERO) <= 0) {
+            throw new IllegalArgumentException("O valor a ser adicionado deve ser maior que zero.");
+        }
+        this.raisedAmount = this.raisedAmount.add(amount);
+    }
+
     public UUID getId() { return id; }
     public UUID getWeddingId() { return weddingId; }
     public String getName() { return name; }

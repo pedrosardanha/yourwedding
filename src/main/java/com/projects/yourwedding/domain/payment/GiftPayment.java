@@ -10,10 +10,11 @@ public class GiftPayment {
     private final UUID giftId;
     private final UUID userId;
     private final BigDecimal amount;
+    private final PaymentMethod paymentMethod;
     private PaymentStatus status;
     private String externalReference;
 
-    public GiftPayment(UUID id, UUID giftId, UUID userId, BigDecimal amount, PaymentStatus status, String externalReference) {
+    public GiftPayment(UUID id, UUID giftId, UUID userId, BigDecimal amount, PaymentMethod paymentMethod, PaymentStatus status, String externalReference) {
         if (id == null) {
             throw new IllegalArgumentException("O ID do pagamento não pode ser nulo.");
         }
@@ -26,16 +27,19 @@ public class GiftPayment {
         if (amount == null || amount.compareTo(BigDecimal.ZERO) <= 0) {
             throw new IllegalArgumentException("O valor do pagamento deve ser maior que zero.");
         }
+        if (paymentMethod == null) {
+            throw new IllegalArgumentException("O método de pagamento é obrigatório.");
+        }
 
         this.id = id;
         this.giftId = giftId;
         this.userId = userId;
         this.amount = amount;
+        this.paymentMethod = paymentMethod;
         this.status = status != null ? status : PaymentStatus.PENDING;
         this.externalReference = externalReference;
     }
 
-    // Comportamento: Quando o Mercado Pago enviar o webhook de confirmação
     public void approve(String externalReference) {
         if (this.status == PaymentStatus.APPROVED) {
             throw new IllegalStateException("Este pagamento já foi aprovado.");
@@ -43,8 +47,7 @@ public class GiftPayment {
         this.status = PaymentStatus.APPROVED;
         this.externalReference = externalReference;
     }
-    
-    // Comportamento: Quando o Mercado Pago recusar
+
     public void reject() {
         this.status = PaymentStatus.REJECTED;
     }
@@ -54,6 +57,7 @@ public class GiftPayment {
     public UUID getGiftId() { return giftId; }
     public UUID getUserId() { return userId; }
     public BigDecimal getAmount() { return amount; }
+    public PaymentMethod getPaymentMethod() { return paymentMethod; }
     public PaymentStatus getStatus() { return status; }
     public String getExternalReference() { return externalReference; }
 
